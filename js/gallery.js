@@ -20,8 +20,6 @@ gallery.insertAdjacentHTML('beforeend', markup.join(''));
 gallery.addEventListener('click', event => {
   event.preventDefault();
   if (event.target.nodeName === 'IMG') {
-    console.log(event.target.dataset.source);
-
     openModal(event.target.dataset.source);
   }
 });
@@ -35,28 +33,22 @@ function openModal(src) {
       className: 'modal',
 
       onShow: instance => {
-        document.addEventListener('keydown', event => {
-          if (event.code === 'Escape') {
-            instance.close();
-          }
-        });
+        document.addEventListener('keydown', onEscapePress);
       },
 
       onClose: instance => {
-        document.addEventListener('keydown', event => {
-          if (
-            event.code === 'Enter' ||
-            event.code === 'NumpadEnter' ||
-            event.code === 'Space'
-          ) {
-            instance.show();
-          }
-        });
+        document.addEventListener('keydown', onEscapePress);
       },
     }
   );
 
   instance.show();
+
+  function onEscapePress(event) {
+    if (event.code === 'Escape') {
+      instance.close();
+    }
+  }
 }
 
 function removeFirstLaseChar(string) {
