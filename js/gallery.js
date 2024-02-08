@@ -31,7 +31,7 @@ document.addEventListener('keydown', event => {
     event.code === 'NumpadEnter' ||
     (event.code === 'Space' && !modal)
   ) {
-    openModal(event.target.href);
+    openModal(event.target.querySelector('img').dataset.source);
   }
 });
 
