@@ -24,6 +24,17 @@ gallery.addEventListener('click', event => {
   }
 });
 
+document.addEventListener('keydown', event => {
+  const modal = document.querySelector('.modal');
+  if (
+    event.code === 'Enter' ||
+    event.code === 'NumpadEnter' ||
+    (event.code === 'Space' && !modal)
+  ) {
+    openModal(event.target.href);
+  }
+});
+
 function openModal(src) {
   const instance = basicLightbox.create(
     `
